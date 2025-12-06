@@ -36,3 +36,60 @@
     transform: rotate(360deg);
   }
 }
+
+/* Table and form styles */
+.table-wrapper {
+  width: 90%;
+  max-width: 900px;
+  margin: 20px auto;
+  background: rgba(255,255,255,0.03);
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+}
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: #222;
+  background: #fff;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.students-table thead {
+  background: linear-gradient(90deg,#61dafb,#4aa8e0);
+  color: #fff;
+}
+.students-table th, .students-table td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid #e6e6e6;
+}
+.students-table tbody tr:nth-child(even) {
+  background: #f9fbfc;
+}
+.students-table tbody tr:hover {
+  background: #f1f7fb;
+}
+.btn {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+}
+.btn.edit {
+  background: #ffd54a;
+  color: #222;
+}
+.btn.delete {
+  background: #ff6b6b;
+  color: #fff;
+  margin-left: 8px;
+}
+.App-header h1 { margin-top: 8px; }
+
+/* StudentForm adjustments */
+form input { padding: 8px 10px; border-radius: 4px; border: 1px solid #ccc; }
+form button { padding: 8px 12px; border-radius: 4px; border: none; background:#61dafb; color:#fff; cursor:pointer }
+
