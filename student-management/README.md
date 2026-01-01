@@ -27,6 +27,20 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
+## Deploy (Render Static Site)
+
+If you deploy this React app on Render, deploy it as a **Static Site** (production build). The error `Publish directory npm start does not exist!` happens when you put `npm start` into the Publish Directory field.
+
+- Root Directory: `student-management`
+- Build Command: `npm install && npm run build`
+- Publish Directory: `build`
+- Environment Variables (set in Render before building):
+	- `REACT_APP_API_URL` = your backend URL (example: `https://testdeploy-izan.onrender.com`)
+- Optional (recommended):
+	- `NODE_VERSION` = `20`
+
+Note: Create React App reads `REACT_APP_*` variables at build time. If you change `REACT_APP_API_URL`, trigger a new deploy.
+
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `npm run eject`

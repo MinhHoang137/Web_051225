@@ -7,7 +7,6 @@ function App() {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [submitting, setSubmitting] = useState(false);
   const [editingId, setEditingId] = useState(null);
   
   // Bài 5: State cho tìm kiếm
@@ -58,7 +57,6 @@ function App() {
           submitLabel="Thêm học sinh"
           onSubmit={async (payload) => {
             try {
-              setSubmitting(true);
               // Bài 2: Create (POST /api/students)
               const res = await axios.post('/api/students', payload);
               setStudents(prev => [res.data, ...prev]);
@@ -67,8 +65,6 @@ function App() {
               console.error('Lỗi khi thêm học sinh:', err);
               alert('Lỗi khi thêm học sinh: ' + (err.response?.data?.error || err.message));
               return false;
-            } finally {
-              setSubmitting(false);
             }
           }}
         />
