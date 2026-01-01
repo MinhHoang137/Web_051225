@@ -4,6 +4,7 @@ import cors from 'cors';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
 import Student from './Student.js';
+import 'dotenv/config';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -16,12 +17,15 @@ const PORT = process.env.PORT || 5000;
 // (Bài 1 yêu cầu hiển thị danh sách học sinh; route GET ở dưới cũng thuộc Bài 1.)
 
 // Connect to MongoDB (Bài 1)
-mongoose.connect('mongodb://localhost:27017/student_db')
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/student_db';
+
+mongoose.connect(MONGODB_URI)
     .then(() => console.log("Đã kết nối MongoDB thành công"))
     .catch(err => console.error("Lỗi kết nối MongoDB:", err));
 
 // Middleware (Bài 1)
-app.use(cors());
+const CORS_ORIGIN = process.env.CORS_ORIGIN || '*';
+app.use(cors({ origin: CORS_ORIGIN }));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
