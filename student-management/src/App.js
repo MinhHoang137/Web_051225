@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from './api';
 import StudentForm from './StudentForm';
 
 function App() {
@@ -33,7 +33,7 @@ function App() {
     // Fetch students from backend API
     // Bài 1: GET danh sách học sinh (Task Bài 1 - Bước 6)
     // This loads all students when the App mounts and is used to render the table.
-    axios.get('http://localhost:5000/api/students')
+    axios.get('/api/students')
       .then(response => {
         setStudents(response.data || []);
         setLoading(false);
@@ -60,7 +60,7 @@ function App() {
             try {
               setSubmitting(true);
               // Bài 2: Create (POST /api/students)
-              const res = await axios.post('http://localhost:5000/api/students', payload);
+              const res = await axios.post('/api/students', payload);
               setStudents(prev => [res.data, ...prev]);
               return true;
             } catch (err) {
@@ -124,7 +124,7 @@ function App() {
                           onSubmit={async (payload) => {
                             try {
                               // Bài 3: Update (PUT /api/students/:id)
-                              const res = await axios.put(`http://localhost:5000/api/students/${s._id}`, payload);
+                              const res = await axios.put(`/api/students/${s._id}`, payload);
                               setStudents(prev => prev.map(p => p._id === s._id ? res.data : p));
                               setEditingId(null);
                               return true;
@@ -150,7 +150,7 @@ function App() {
                         <button className="btn delete" onClick={async () => {
                           if (!window.confirm('Xóa học sinh này?')) return;
                           try {
-                            await axios.delete(`http://localhost:5000/api/students/${s._id}`);
+                            await axios.delete(`/api/students/${s._id}`);
                             setStudents(prev => prev.filter(p => p._id !== s._id));
                           } catch (err) {
                             console.error('Lỗi khi xóa học sinh:', err);
